@@ -68,9 +68,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 />
               </label>
             </Form>
-            <H2>
             <FormattedMessage {...messages.todayArticleHeader} />
-            </H2>
             <TodayWeatherArticle weather={todayWeather} />
           </Section>
         </div>

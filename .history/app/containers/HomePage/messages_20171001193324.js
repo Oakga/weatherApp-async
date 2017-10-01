@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   startTitle: {
     id: 'boilerplate.containers.HomePage.startTitle.header',
-    defaultMessage: 'Weather Application',
+    defaultMessage: 'Search weather location in seconds',
   },
   searchLocationHeader: {
     id: 'boilerplate.containers.HomePage.searchLocation.header',
