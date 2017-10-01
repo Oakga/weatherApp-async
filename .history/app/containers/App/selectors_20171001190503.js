@@ -5,7 +5,10 @@
 import { createSelector } from 'reselect';
 
 const selectGlobal = (state) => state.get('global');
+
 const selectRoute = (state) => state.get('route');
+
+const convertToJS = (state) => (typeof state === 'boolean') ? state : state.toJS();
 
 const makeSelectLoading = () => createSelector(
   selectGlobal,
@@ -34,11 +37,7 @@ const makeSelectGeoLocationLng = () => createSelector(
 
 const makeSelectTodayWeather = () => createSelector(
   selectGlobal,
-  (globalState) => {
-    const state = globalState.getIn(['todayWeather', 'data']);
-    if (typeof state === 'boolean') return state;
-    return state.toJS();
-  }
+  (globalState) => globalState.getIn(['todayWeather', 'data']),
 );
 
 const makeSelectWeeklyWeather = () => createSelector(

@@ -34,11 +34,7 @@ const makeSelectGeoLocationLng = () => createSelector(
 
 const makeSelectTodayWeather = () => createSelector(
   selectGlobal,
-  (globalState) => {
-    const state = globalState.getIn(['todayWeather', 'data']);
-    if (typeof state === 'boolean') return state;
-    return state.toJS();
-  }
+  (globalState) => globalState.getIn(['todayWeather', 'data']),
 );
 
 const makeSelectWeeklyWeather = () => createSelector(

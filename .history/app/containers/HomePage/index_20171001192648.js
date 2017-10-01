@@ -37,6 +37,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
 
   render() {
     const { loading, error, location, todayWeather} = this.props;
+    console.log(todayWeather);
 
     // for our case , we will wait for on submit to make a state update since we don't want mutiple state updates of the same type frequently
     const onChange = () => {};
@@ -68,7 +69,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 />
               </label>
             </Form>
-            <TodayWeatherArticle weather={todayWeather} />
+            {/* <TodayWeatherArticle weather={todayWeather} /> */}
           </Section>
         </div>
       </article>
