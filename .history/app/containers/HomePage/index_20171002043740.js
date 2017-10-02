@@ -105,8 +105,9 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 <Input
                   id="searchDateInput"
                   type="text"
-                  placeholder="yyyy-mm-dd"
+                  placeholder="[2010-12-25][yyyy-mm-dd]"
                   onChange={onChange}
+                  value={'  2010-12-25'}
                 />
               </label>
               <button onClick={onSubmitForm} type="button" className="btn btn-success btn-lg btn-block">Search</button>

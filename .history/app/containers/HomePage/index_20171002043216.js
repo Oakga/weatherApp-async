@@ -105,8 +105,9 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 <Input
                   id="searchDateInput"
                   type="text"
-                  placeholder="yyyy-mm-dd"
+                  placeholder="[2010-12-25][yyyy-mm-dd]"
                   onChange={onChange}
+                  value={'  2010-12-25'}
                 />
               </label>
               <button onClick={onSubmitForm} type="button" className="btn btn-success btn-lg btn-block">Search</button>
@@ -150,9 +151,7 @@ export function mapDispatchToProps(dispatch) {
     onSubmitForm: (evt) => {
       let newSearchLocation = document.getElementById('searchLocationInput').value;
       if (newSearchLocation.length === 0) newSearchLocation = 'New York';
-
-      let newSearchDate = document.getElementById('searchDateInput').value;
-      if (newSearchDate.length === 0) newSearchDate = '2017-10-2';
+      const newSearchDate = document.getElementById('searchDateInput').value;
       const unixTime = Date.parse(newSearchDate) / 1000;
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(changeSearchLocation(newSearchLocation, newSearchDate));
