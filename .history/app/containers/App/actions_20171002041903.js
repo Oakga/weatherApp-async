@@ -29,7 +29,7 @@ import {
 * @param  {number} date The new date of the date input field
  * @return {object} An action object with a type of FETCH_GEO
  */
-export function fetchGeo(search, date) {
+export function fetchGeo(search,date) {
   return {
     type: FETCH_GEO,
     search,
@@ -40,15 +40,13 @@ export function fetchGeo(search, date) {
 /**
  * Dispatched when the repositories are loaded by the request saga
  *
- * @param  {object} location The location data
- * @param  {number} date The new date of the date input field
+ * @param  {object} location The repository data
  * @return {object} An action object with a type of FETCH_GEO_SUCCESS loading the geo location
  */
-export function geoFetched(locationData, date) {
+export function geoFetched(locationData) {
   return {
     type: FETCH_GEO_SUCCESS,
     locationData,
-    date,
   };
 }
 

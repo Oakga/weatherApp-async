@@ -21,12 +21,11 @@ export function* callGeoAPI(action) {
   }
 }
 
-export function* callDarkSkyAPI(action) {
+export function* callDarkSkyAPI() {
   const key = 'a467fea14c1e42d510075082c4e8013a';
   const lat = yield select(makeSelectGeoLocationLat());
   const lng = yield select(makeSelectGeoLocationLng());
-  const time = action.date;
-  const params = `${key}/${lat},${lng}?&time=${time}`;
+  const params = `${key}/${lat},${lng}`;
   const urlString = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${params}`;
   try {
     const response = yield call(API.darkSkyAPI, urlString);
