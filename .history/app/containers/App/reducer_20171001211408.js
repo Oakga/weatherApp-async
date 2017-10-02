@@ -58,7 +58,7 @@ function appReducer(state = initialState, action) {
         .set('loading', false);
     case FETCH_WEATHER_SUCCESS:
       action.weatherData.weeklyWeather.forEach((day) => {
-        filteredData.push(day.temperatureHigh); // default type
+        filteredData.push(day.temperature); // default type
       }
     );
       return state

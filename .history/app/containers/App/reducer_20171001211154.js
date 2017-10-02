@@ -58,13 +58,12 @@ function appReducer(state = initialState, action) {
         .set('loading', false);
     case FETCH_WEATHER_SUCCESS:
       action.weatherData.weeklyWeather.forEach((day) => {
-        filteredData.push(day.temperatureHigh); // default type
+
       }
     );
       return state
         .setIn(['todayWeather', 'data'], fromJS(action.weatherData.todayWeather))
         .setIn(['weeklyWeather', 'data'], fromJS(action.weatherData.weeklyWeather))
-        .setIn(['weeklyWeather', 'filteredData'], fromJS(filteredData))
         .set('loading', false);
     case FETCH_WEATHER_ERROR:
       return state
