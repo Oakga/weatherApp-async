@@ -17,8 +17,8 @@ function History(props) {
           </tr>
         </thead>
         <tbody id="history-table">
-          {props.data.map((search) =>
-            <tr key={search}><td>{search}</td></tr>
+          {props.data.map((search,i) =>
+            <tr key={i}><td>{search}</td></tr>
           )}
         </tbody>
       </table>

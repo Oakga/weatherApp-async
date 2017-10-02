@@ -32,7 +32,7 @@ export default function App() {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <nav className="navbar navbar-inverse bg-inverse">
-        <a className="navbar-brand" href="/"><strong>Weather Application</strong></a>
+        <a className="navbar-brand" href="home"><strong>Weather Application</strong></a>
       </nav>
       <Switch>
         <Route exact path="/" component={HomePage} />
