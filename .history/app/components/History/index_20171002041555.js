@@ -10,7 +10,7 @@ function History(props) {
   const showTitle = (props.data.locations.length > 0);
   const searchLog = [];
   if (showTitle) {
-    for (let i = 0; i < props.data.locations.length; i += 1) {
+    for (let i = 0; i < props.data.locations.length; i+=1) {
       searchLog.push(`${props.data.locations[i]} on ${props.data.dates[i]}`);
     }
   }
