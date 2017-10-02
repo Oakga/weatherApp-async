@@ -1,6 +1,3 @@
-<img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
-
-<br />
 ## Quick start
 
 1. Clone this repo using `git clone --depth=1 https://github.com/react-boilerplate/react-boilerplate.git`
