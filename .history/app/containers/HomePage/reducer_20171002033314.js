@@ -19,27 +19,25 @@ import {
 const initialState = fromJS({
   currentSearch: '',
   currentDate: '',
-  searchHistory: {
-    locations: [],
-    dates: [],
-  },
+  searchHistory: [],
+  searchDates: [],
 });
 
 function homeReducer(state = initialState, action) {
-  const searchLocation = state.toJS().searchHistory.locations;
-  const searchDates = state.toJS().searchHistory.dates;
+  const searchHistory = state.toJS().searchHistory;
+  const searchDates = state.toJS().searchDates;
   switch (action.type) {
     case CHANGE_SEARCH:
     // keep the history and limit of 5 without null locations
       if (action.location.trim().length > 0) {
-        searchLocation.push(action.location);
+        searchHistory.push(action.location);
         searchDates.push(action.date);
-        if (searchLocation.length > 5) searchLocation.shift();
+        if (searchHistory.length > 5) searchHistory.shift();
         if (searchDates.length > 5) searchDates.shift();
       }
       return state
-      .setIn(['searchHistory', 'locations'], fromJS(searchLocation))
-      .setIn(['searchHistory', 'dates'], fromJS(searchDates))
+        .set('searchHistory', fromJS(searchHistory))
+        .set('searchDates', fromJS(searchDates))
         .set('currentSearch', action.location);
     default:
       return state;

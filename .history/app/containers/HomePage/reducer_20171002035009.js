@@ -38,7 +38,7 @@ function homeReducer(state = initialState, action) {
         if (searchDates.length > 5) searchDates.shift();
       }
       return state
-      .setIn(['searchHistory', 'locations'], fromJS(searchLocation))
+      .setIn(['searchHistory', 'location'], fromJS(searchLocation))
       .setIn(['searchHistory', 'dates'], fromJS(searchDates))
         .set('currentSearch', action.location);
     default:

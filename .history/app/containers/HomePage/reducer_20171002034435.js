@@ -20,13 +20,13 @@ const initialState = fromJS({
   currentSearch: '',
   currentDate: '',
   searchHistory: {
-    locations: [],
+    location: [],
     dates: [],
   },
 });
 
 function homeReducer(state = initialState, action) {
-  const searchLocation = state.toJS().searchHistory.locations;
+  const searchLocation = state.toJS().searchHistory.location;
   const searchDates = state.toJS().searchHistory.dates;
   switch (action.type) {
     case CHANGE_SEARCH:
@@ -38,7 +38,7 @@ function homeReducer(state = initialState, action) {
         if (searchDates.length > 5) searchDates.shift();
       }
       return state
-      .setIn(['searchHistory', 'locations'], fromJS(searchLocation))
+      .setIn(['searchHistory', 'location'], fromJS(searchLocation))
       .setIn(['searchHistory', 'dates'], fromJS(searchDates))
         .set('currentSearch', action.location);
     default:

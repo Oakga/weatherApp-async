@@ -8,22 +8,14 @@ import PropTypes from 'prop-types';
 
 function History(props) {
   const showTitle = (props.data.locations.length > 0);
-  const searchLog = [];
-  if (showTitle) {
-    for (let i = 0; i < props.data.locations.length; i++) {
-      searchLog.push(`${props.data.locations[i]} on ${props.data.dates[i]}`);
-    }
-  }
   return (
     <div>
       <table className="table table-hover">
         <thead className="thead-inverse">
-          <tr>
-            {showTitle ? <th>Search History</th> : ''}
-          </tr>
+            {showTitle ? <tr><td>Location</td><td>Dates</td></tr> : ''}
         </thead>
         <tbody id="history-table">
-          {searchLog.map((search) =>
+          {props.data.map((search) =>
             <tr key={search}><td>{search}</td></tr>
           )}
         </tbody>
@@ -33,7 +25,8 @@ function History(props) {
 }
 
 History.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
+  dates: PropTypes.array,
 };
 
 export default History;

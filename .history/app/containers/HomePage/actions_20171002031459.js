@@ -27,7 +27,7 @@ import {
  *
  * @return {object}    An action object with a type of CHANGE_SEARCH
  */
-export function changeSearchLocation(location, date) {
+export function changeSearchLocation(location,date) {
   return {
     type: CHANGE_SEARCH,
     location,

@@ -75,6 +75,17 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return myChart;
   }
 
+
+  convertToDateTime = (time) => {
+    const date = new Date(time * 1000);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    year = date.getFullYear();
+    month = months[date.getMonth()];
+    numDate = date.getDate();
+    formattedTime = `${numDate } ${month } ${year}`;
+    return formattedTime;
+  };
+
   convertToUnixTime = (time) => Date.parse(time) / 1000;
 
   render() {
@@ -100,6 +111,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                   type="text"
                   placeholder="Example: New York"
                   onChange={onChange}
+                  value={'  New York'}
                 />
                 <FormattedMessage {...messages.searchDateMessage} />
                 <Input
@@ -139,7 +151,7 @@ HomePage.propTypes = {
   filteredData: PropTypes.array,
   onSubmitForm: PropTypes.func,
   label: PropTypes.string,
-  history: PropTypes.object,
+  history: PropTypes.array,
 };
 
 HomePage.defaultProps = {
@@ -152,9 +164,10 @@ export function mapDispatchToProps(dispatch) {
       const newSearchLocation = document.getElementById('searchLocationInput').value;
       const newSearchDate = document.getElementById('searchDateInput').value;
       const unixTime = Date.parse(newSearchDate) / 1000;
+      console.log(unixTime);
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(changeSearchLocation(newSearchLocation, newSearchDate));
-      dispatch(fetchGeo(newSearchLocation, unixTime));
+      dispatch(fetchGeo(newSearchLocation, newSearchDate));
     },
   };
 }

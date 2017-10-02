@@ -9,10 +9,8 @@ import PropTypes from 'prop-types';
 function History(props) {
   const showTitle = (props.data.locations.length > 0);
   const searchLog = [];
-  if (showTitle) {
-    for (let i = 0; i < props.data.locations.length; i++) {
-      searchLog.push(`${props.data.locations[i]} on ${props.data.dates[i]}`);
-    }
+  for (let i = 0; i < props.data.locations.length; i++) {
+    searchLog.push(`${props.data.location[i]},${props.data.dates[i]}`);
   }
   return (
     <div>

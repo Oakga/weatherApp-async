@@ -11,7 +11,7 @@ function History(props) {
   const searchLog = [];
   if (showTitle) {
     for (let i = 0; i < props.data.locations.length; i++) {
-      searchLog.push(`${props.data.locations[i]} on ${props.data.dates[i]}`);
+      searchLog.push(`${props.data.location[i]},${props.data.dates[i]}`);
     }
   }
   return (

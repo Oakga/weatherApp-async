@@ -16,10 +16,10 @@ export default defineMessages({
   },
   searchLocationMessage: {
     id: 'boilerplate.containers.HomePage.searchLocation.message',
-    defaultMessage: 'Search Location:',
+    defaultMessage: 'Search Location: ',
   },
   searchDateMessage: {
     id: 'boilerplate.containers.HomePage.searchLocation.message',
-    defaultMessage: 'on Date:',
+    defaultMessage: 'on Date: ',
   },
 });

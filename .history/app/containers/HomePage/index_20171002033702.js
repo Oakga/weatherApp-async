@@ -22,7 +22,7 @@ import { makeSelectTodayWeather, makeSelectGeoLocationAddress, makeSelectLoading
 import { fetchGeo } from '../App/actions';
 import messages from './messages';
 import { changeSearchLocation } from './actions';
-import { makeSelectCurrentSearch, makeSelectSearchHistory } from './selectors';
+import { makeSelectCurrentSearch, makeSelectSearchHistory, makeSelectSearchDates } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { Form, Input, Section } from './styles/index';
@@ -75,10 +75,21 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return myChart;
   }
 
+
+  convertToDateTime = (time) => {
+    const date = new Date(time * 1000);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const year = date.getFullYear();
+    const month = months[date.getMonth()];
+    const numDate = date.getDate();
+    const formattedTime = `${numDate} ${month} ${year}`;
+    return formattedTime;
+  };
+
   convertToUnixTime = (time) => Date.parse(time) / 1000;
 
   render() {
-    const { location, todayWeather, history, onSubmitForm } = this.props;
+    const { location, todayWeather, historyData, historyDates, onSubmitForm } = this.props;
     // for our case , we will wait for on submit to make a state update since we don't want mutiple state updates of the same type frequently
     const onChange = () => {};
     return (
@@ -100,6 +111,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                   type="text"
                   placeholder="Example: New York"
                   onChange={onChange}
+                  value={'  New York'}
                 />
                 <FormattedMessage {...messages.searchDateMessage} />
                 <Input
@@ -116,7 +128,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <TodayWeatherArticle location={location} weather={todayWeather} />
           </Section>
           <Section>
-            <History data={history} />
+            <History data={historyData} dates={historyDates} />
           </Section>
           <Section>
             <canvas id="myChart" width="400" height="400"></canvas>
@@ -139,7 +151,8 @@ HomePage.propTypes = {
   filteredData: PropTypes.array,
   onSubmitForm: PropTypes.func,
   label: PropTypes.string,
-  history: PropTypes.object,
+  historyData: PropTypes.array,
+  historyDates: PropTypes.array,
 };
 
 HomePage.defaultProps = {
@@ -167,7 +180,8 @@ const mapStateToProps = createStructuredSelector({
   todayWeather: makeSelectTodayWeather(),
   filteredData: makeSelectWeeklyWeatherFilteredData(),
   label: makeSelectWeeklyWeatherFilteredLabel(),
-  history: makeSelectSearchHistory(),
+  historyData: makeSelectSearchHistory(),
+  historyDates: makeSelectSearchDates(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

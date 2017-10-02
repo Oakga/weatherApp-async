@@ -18,18 +18,11 @@ const makeSelectSearchHistory = () => createSelector(
     return state.toJS();
   }
 );
-const makeSelectSearchLocations = () => createSelector(
-  selectHome,
-  (homeState) => {
-    const state = homeState.getIn(['searchHistory', 'locations']);
-    return state.toJS();
-  }
-);
 
 const makeSelectSearchDates = () => createSelector(
   selectHome,
   (homeState) => {
-    const state = homeState.getIn(['searchHistory', 'dates']);
+    const state = homeState.get('searchDates');
     return state.toJS();
   }
 );
@@ -39,6 +32,5 @@ export {
   selectHome,
   makeSelectSearchDates,
   makeSelectSearchHistory,
-  makeSelectSearchLocations,
   makeSelectCurrentSearch,
 };

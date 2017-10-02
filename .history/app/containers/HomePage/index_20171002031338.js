@@ -75,10 +75,8 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return myChart;
   }
 
-  convertToUnixTime = (time) => Date.parse(time) / 1000;
-
   render() {
-    const { location, todayWeather, history, onSubmitForm } = this.props;
+    const { location, todayWeather, history } = this.props;
     // for our case , we will wait for on submit to make a state update since we don't want mutiple state updates of the same type frequently
     const onChange = () => {};
     return (
@@ -92,7 +90,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
             <H2>
               <FormattedMessage {...messages.searchLocationHeader} />
             </H2>
-            <Form>
+            <Form onSubmit={this.props.onSubmitForm}>
               <label htmlFor="search">
                 <FormattedMessage {...messages.searchLocationMessage} />
                 <Input
@@ -101,18 +99,14 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                   placeholder="Example: New York"
                   onChange={onChange}
                 />
-                <FormattedMessage {...messages.searchDateMessage} />
                 <Input
                   id="searchDateInput"
                   type="text"
-                  placeholder="[2010-12-25][yyyy-mm-dd]"
+                  placeholder="[example: 2010-08-10][year-month-day]"
                   onChange={onChange}
-                  value={'  2010-12-25'}
                 />
               </label>
-              <button onClick={onSubmitForm} type="button" className="btn btn-success btn-lg btn-block">Search</button>
             </Form>
-
             <TodayWeatherArticle location={location} weather={todayWeather} />
           </Section>
           <Section>
@@ -139,7 +133,7 @@ HomePage.propTypes = {
   filteredData: PropTypes.array,
   onSubmitForm: PropTypes.func,
   label: PropTypes.string,
-  history: PropTypes.object,
+  history: PropTypes.array,
 };
 
 HomePage.defaultProps = {
@@ -150,11 +144,10 @@ export function mapDispatchToProps(dispatch) {
   return {
     onSubmitForm: (evt) => {
       const newSearchLocation = document.getElementById('searchLocationInput').value;
-      const newSearchDate = document.getElementById('searchDateInput').value;
-      const unixTime = Date.parse(newSearchDate) / 1000;
+      const date = document.getElementById('searchDateInput').value;
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(changeSearchLocation(newSearchLocation, newSearchDate));
-      dispatch(fetchGeo(newSearchLocation, unixTime));
+      dispatch(changeSearchLocation(newSearchLocation));
+      dispatch(fetchGeo(newSearchLocation));
     },
   };
 }

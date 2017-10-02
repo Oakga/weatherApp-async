@@ -15,7 +15,6 @@ const makeSelectSearchHistory = () => createSelector(
   selectHome,
   (homeState) => {
     const state = homeState.get('searchHistory');
-    return state.toJS();
   }
 );
 const makeSelectSearchLocations = () => createSelector(

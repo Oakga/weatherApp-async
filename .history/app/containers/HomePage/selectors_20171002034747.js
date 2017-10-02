@@ -15,13 +15,12 @@ const makeSelectSearchHistory = () => createSelector(
   selectHome,
   (homeState) => {
     const state = homeState.get('searchHistory');
-    return state.toJS();
   }
 );
 const makeSelectSearchLocations = () => createSelector(
   selectHome,
   (homeState) => {
-    const state = homeState.getIn(['searchHistory', 'locations']);
+    const state = homeState.getIn(['searchHistory', 'location']);
     return state.toJS();
   }
 );

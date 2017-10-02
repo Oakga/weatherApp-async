@@ -75,6 +75,17 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return myChart;
   }
 
+
+  convertToDateTime = (time) => {
+    const date = new Date(time * 1000);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const year = date.getFullYear();
+    const month = months[date.getMonth()];
+    const numDate = date.getDate();
+    const formattedTime = `${numDate} ${month} ${year}`;
+    return formattedTime;
+  };
+
   convertToUnixTime = (time) => Date.parse(time) / 1000;
 
   render() {
